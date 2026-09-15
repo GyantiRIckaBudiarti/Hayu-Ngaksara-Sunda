@@ -1,0 +1,140 @@
+<mxfile host="app.diagrams.net" version="24.0.0" type="device">
+  <diagram name="1. Arsitektur" id="arch">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Arsitektur Hayu Ngaksara Sunda" style="text;html=1;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="360" y="20" width="420" height="30" as="geometry"/></mxCell>
+
+        <mxCell id="glbox" value="OBJEK GLOBAL (Singleton + DontDestroyOnLoad)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="120" y="80" width="920" height="120" as="geometry"/></mxCell>
+        <mxCell id="gm" value="GameManager&#10;state, skor, database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="150" y="120" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="cm" value="ChapterManager&#10;progres + event" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="360" y="120" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="stm" value="SceneTransitionMgr&#10;fade antar-scene" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="570" y="120" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="am" value="AudioManager&#10;musik &amp; SFX" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="780" y="120" width="180" height="60" as="geometry"/></mxCell>
+
+        <mxCell id="menubox" value="SCENE 01_MainMenu" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="120" y="260" width="280" height="150" as="geometry"/></mxCell>
+        <mxCell id="mmc" value="MainMenuController" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="150" y="300" width="220" height="40" as="geometry"/></mxCell>
+        <mxCell id="sp" value="SettingsPanel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="150" y="350" width="220" height="40" as="geometry"/></mxCell>
+
+        <mxCell id="owbox" value="SCENE 00_Sekolah (Overworld)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="440" y="260" width="600" height="220" as="geometry"/></mxCell>
+        <mxCell id="ptd" value="PlayerTopDown  (gerak karakter)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="470" y="300" width="250" height="40" as="geometry"/></mxCell>
+        <mxCell id="is" value="InteractSystem  (deteksi E)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="470" y="350" width="250" height="40" as="geometry"/></mxCell>
+        <mxCell id="npc" value="NPCController ×6 : IInteractable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="470" y="400" width="250" height="40" as="geometry"/></mxCell>
+        <mxCell id="ds" value="DialogSystem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="750" y="300" width="260" height="40" as="geometry"/></mxCell>
+        <mxCell id="hud" value="ObjectiveHUD / ObjectiveArrow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="750" y="350" width="260" height="40" as="geometry"/></mxCell>
+        <mxCell id="cam" value="CameraFollow / Cinemachine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="750" y="400" width="260" height="40" as="geometry"/></mxCell>
+
+        <mxCell id="mgbox" value="SCENE MG_*  (Mini-game per aktivitas)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="440" y="540" width="600" height="110" as="geometry"/></mxCell>
+        <mxCell id="mgm" value="MiniGameManager&#10;Intro → Learn → Trace → Quiz → Result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="470" y="575" width="540" height="55" as="geometry"/></mxCell>
+
+        <mxCell id="pp" value="PlayerPrefs&#10;(progres tersimpan)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1"><mxGeometry x="150" y="540" width="160" height="90" as="geometry"/></mxCell>
+
+        <mxCell id="e1" style="endArrow=block;html=1;" edge="1" parent="1" source="glbox" target="owbox"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;" edge="1" parent="1" source="mmc" target="stm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=1;" edge="1" parent="1" source="npc" target="mgm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="mgm" target="cm"><mxGeometry relative="1" as="geometry"/><Array as="points"><mxPoint x="740" y="560"/><mxPoint x="450" y="150"/></Array></mxCell>
+        <mxCell id="e5" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="cm" target="pp"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="2. Alur end-to-end" id="flow">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" page="1" pageWidth="827" pageHeight="1169" math="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="f_t" value="Alur Hidup Aplikasi (End-to-End)" style="text;html=1;fontSize=18;fontStyle=1;align=center;" vertex="1" parent="1"><mxGeometry x="240" y="20" width="360" height="30" as="geometry"/></mxCell>
+        <mxCell id="s0" value="Buka game" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="340" y="70" width="140" height="50" as="geometry"/></mxCell>
+        <mxCell id="s1" value="01_MainMenu&#10;(Mulai / Lanjutkan)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="330" y="150" width="160" height="60" as="geometry"/></mxCell>
+        <mxCell id="s2" value="00a_NamaKarakter&#10;isi nama + gender&#10;ResetAll() bila baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="320" y="240" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="s3" value="00_Sekolah&#10;jalan (WASD) + temui NPC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="320" y="340" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="s4" value="Tekan E di NPC&#10;DialogSystem + pilihan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="320" y="440" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="s5" value="Mini-game (MG_*)&#10;Learn/Trace/Quiz" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="320" y="530" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="s6" value="CompleteSubActivity()&#10;simpan skor/bintang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1"><mxGeometry x="320" y="620" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="s7" value="4 aktivitas selesai?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1"><mxGeometry x="330" y="710" width="160" height="80" as="geometry"/></mxCell>
+        <mxCell id="s8" value="CompleteChapter()&#10;unlock berikutnya&#10;pending_levelup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="560" y="715" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="s9" value="LevelUpAnnouncer&#10;dialog 'Naik Level!'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="560" y="820" width="180" height="60" as="geometry"/></mxCell>
+
+        <mxCell id="fe0" style="endArrow=block;html=1;" edge="1" parent="1" source="s0" target="s1"/>
+        <mxCell id="fe1" style="endArrow=block;html=1;" edge="1" parent="1" source="s1" target="s2"/>
+        <mxCell id="fe2" style="endArrow=block;html=1;" edge="1" parent="1" source="s2" target="s3"/>
+        <mxCell id="fe3" style="endArrow=block;html=1;" edge="1" parent="1" source="s3" target="s4"/>
+        <mxCell id="fe4" style="endArrow=block;html=1;" edge="1" parent="1" source="s4" target="s5"/>
+        <mxCell id="fe5" style="endArrow=block;html=1;" edge="1" parent="1" source="s5" target="s6"/>
+        <mxCell id="fe6" style="endArrow=block;html=1;" edge="1" parent="1" source="s6" target="s7"/>
+        <mxCell id="fe7" value="belum" style="endArrow=block;html=1;" edge="1" parent="1" source="s7" target="s3"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="250" y="750"/><mxPoint x="250" y="375"/></Array></mxGeometry></mxCell>
+        <mxCell id="fe8" value="ya" style="endArrow=block;html=1;" edge="1" parent="1" source="s7" target="s8"/>
+        <mxCell id="fe9" style="endArrow=block;html=1;" edge="1" parent="1" source="s8" target="s9"/>
+        <mxCell id="fe10" value="kembali sekolah" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="s9" target="s3"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="650" y="375"/></Array></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="3. Loop belajar" id="loop">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" page="1" pageWidth="1169" pageHeight="600" math="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="l_t" value="Satu Siklus Belajar (per Chapter)" style="text;html=1;fontSize=18;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="380" y="20" width="420" height="30" as="geometry"/></mxCell>
+        <mxCell id="n1" value="SINTA&#10;Membaca (baca)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="120" y="120" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="n2" value="UCUP&#10;Menulis (tulis)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="360" y="120" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="n3" value="NABILA&#10;Pelafalan (pelafalan)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="600" y="120" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="n4" value="GURU&#10;Refleksi / Ujian (refleksi)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="840" y="120" width="200" height="70" as="geometry"/></mxCell>
+        <mxCell id="lc" value="CompleteChapter → unlock chapter berikutnya (Swara→Ngalagena1→Ngalagena2→Rarangken→UjianFinal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="300" y="280" width="560" height="60" as="geometry"/></mxCell>
+        <mxCell id="hudn" value="ObjectiveHUD menuntun urutan NPC + menampilkan skor tiap aktivitas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" vertex="1" parent="1"><mxGeometry x="300" y="380" width="560" height="50" as="geometry"/></mxCell>
+        <mxCell id="le1" style="endArrow=block;html=1;" edge="1" parent="1" source="n1" target="n2"/>
+        <mxCell id="le2" style="endArrow=block;html=1;" edge="1" parent="1" source="n2" target="n3"/>
+        <mxCell id="le3" style="endArrow=block;html=1;" edge="1" parent="1" source="n3" target="n4"/>
+        <mxCell id="le4" style="endArrow=block;html=1;" edge="1" parent="1" source="n4" target="lc"/>
+        <mxCell id="le5" value="chapter berikutnya" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="lc" target="n1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="210" y="310"/><mxPoint x="210" y="155"/></Array></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="4. Pipeline gerak" id="move">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" page="1" pageWidth="1169" pageHeight="600" math="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="m_t" value="Pipeline Gerak Karakter (per frame)" style="text;html=1;fontSize=18;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="380" y="20" width="420" height="30" as="geometry"/></mxCell>
+        <mxCell id="mk" value="Tekan WASD / Panah" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="80" y="120" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="mu" value="Update()&#10;baca Keyboard.current&#10;_input = (x,y).normalized" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="320" y="110" width="220" height="80" as="geometry"/></mxCell>
+        <mxCell id="ma" value="Set parameter Animator&#10;MoveX/Y, IsMoving, LastX/Y&#10;(sumbu dominan utk diagonal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="600" y="110" width="240" height="80" as="geometry"/></mxCell>
+        <mxCell id="mf" value="FixedUpdate()&#10;_rb.linearVelocity = _input * moveSpeed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="320" y="260" width="280" height="70" as="geometry"/></mxCell>
+        <mxCell id="mb" value="Rigidbody2D gerak&#10;(tabrakan dinding dihitung engine)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1"><mxGeometry x="320" y="360" width="280" height="60" as="geometry"/></mxCell>
+        <mxCell id="ml" value="LateUpdate() Kamera&#10;lerp mengikuti pemain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1"><mxGeometry x="320" y="450" width="280" height="60" as="geometry"/></mxCell>
+        <mxCell id="mi" value="Tekan E → InteractSystem.TryInteract()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="680" y="270" width="260" height="50" as="geometry"/></mxCell>
+        <mxCell id="me1" style="endArrow=block;html=1;" edge="1" parent="1" source="mk" target="mu"/>
+        <mxCell id="me2" style="endArrow=block;html=1;" edge="1" parent="1" source="mu" target="ma"/>
+        <mxCell id="me3" style="endArrow=block;html=1;" edge="1" parent="1" source="mu" target="mf"/>
+        <mxCell id="me4" style="endArrow=block;html=1;" edge="1" parent="1" source="mf" target="mb"/>
+        <mxCell id="me5" style="endArrow=block;html=1;" edge="1" parent="1" source="mb" target="ml"/>
+        <mxCell id="me6" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="mu" target="mi"/>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="5. Diagram kelas" id="class">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" page="1" pageWidth="1169" pageHeight="700" math="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="c_t" value="Diagram Kelas Inti (ringkas)" style="text;html=1;fontSize=18;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="420" y="20" width="360" height="30" as="geometry"/></mxCell>
+
+        <mxCell id="ci" value="&lt;&lt;interface&gt;&gt;&#10;IInteractable&#10;+ InteractLabel&#10;+ Interact(player)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="80" y="90" width="200" height="90" as="geometry"/></mxCell>
+        <mxCell id="cnpc" value="NPCController&#10;- npcName, chapterOwned&#10;- isSkillNPC, skillMode&#10;+ Interact()&#10;+ CreateNameLabel()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="80" y="240" width="220" height="120" as="geometry"/></mxCell>
+        <mxCell id="cis" value="InteractSystem&#10;- interactRadius&#10;+ TryInteract()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="360" y="240" width="200" height="90" as="geometry"/></mxCell>
+        <mxCell id="cptd" value="PlayerTopDown&#10;- moveSpeed, _input&#10;+ CanMove&#10;+ Update()/FixedUpdate()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="360" y="90" width="220" height="110" as="geometry"/></mxCell>
+        <mxCell id="ccm" value="ChapterManager&#10;- _chapters&#10;+ CompleteChapter()&#10;+ CompleteSubActivity()&#10;+ GetCurrentActiveChapter()&#10;events: OnChapter*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="660" y="90" width="240" height="140" as="geometry"/></mxCell>
+        <mxCell id="cmgm" value="MiniGameManager&#10;- data (MiniGameData)&#10;+ Intro/Learn/Trace/Quiz/Result" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="660" y="280" width="240" height="100" as="geometry"/></mxCell>
+        <mxCell id="chud" value="ObjectiveHUD&#10;subscribe event → refresh" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="960" y="90" width="180" height="80" as="geometry"/></mxCell>
+        <mxCell id="cmgd" value="MiniGameData&#10;+ MiniGameMode&#10;+ kartu aksara[]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="960" y="280" width="180" height="90" as="geometry"/></mxCell>
+
+        <mxCell id="ce1" value="implements" style="endArrow=block;endFill=0;html=1;dashed=1;" edge="1" parent="1" source="cnpc" target="ci"/>
+        <mxCell id="ce2" value="cari terdekat" style="endArrow=open;html=1;" edge="1" parent="1" source="cis" target="ci"/>
+        <mxCell id="ce3" value="TryInteract" style="endArrow=open;html=1;" edge="1" parent="1" source="cptd" target="cis"/>
+        <mxCell id="ce4" value="mulai belajar" style="endArrow=open;html=1;" edge="1" parent="1" source="cnpc" target="cmgm"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="620" y="340"/></Array></mxGeometry></mxCell>
+        <mxCell id="ce5" value="simpan hasil" style="endArrow=open;html=1;" edge="1" parent="1" source="cmgm" target="ccm"/>
+        <mxCell id="ce6" value="baca chapter aktif" style="endArrow=open;html=1;" edge="1" parent="1" source="cnpc" target="ccm"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="640" y="250"/></Array></mxGeometry></mxCell>
+        <mxCell id="ce7" value="event" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="ccm" target="chud"/>
+        <mxCell id="ce8" value="pakai" style="endArrow=open;html=1;" edge="1" parent="1" source="cmgm" target="cmgd"/>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

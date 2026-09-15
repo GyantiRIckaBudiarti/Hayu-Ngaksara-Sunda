@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c0d963e3466fa4aacd3eb1d2e6b9c3, type: 3}
+  m_Name: MG_Ngalagena1
+  m_EditorClassIdentifier: Assembly-CSharp::HayuNgaksara.MiniGameData
+  chapterID: 2
+  npcName: Nabila
+  introText: "Hayu diajar 9 aksara Ngalagena kahiji \u2014 ka, ga, nga, ca, ja, nya,
+    ta, da, na!\n<size=68%><i><color=#C3BCAD>(Ayo belajar 9 aksara Ngalagena pertama
+    \u2014 ka, ga, nga, ca, ja, nya, ta, da, na!)</color></i></size>"
+  chapterTitle: 'Bab 2: Ngalagena (ka - na)'
+  gameMode: 0
+  cards:
+  - aksaraChar: "\u1B8A"
+    latinName: ka
+    audioFile: ka
+    description: Konsonan KA
+    sprite: {fileID: 21300000, guid: 65143b96b1997c14fb5d15bf8a25ac5a, type: 3}
+    strokeOrder:
+    - x: 0.78
+      y: 0.85
+  - aksaraChar: "\u1B8C"
+    latinName: ga
+    audioFile: ga
+    description: Konsonan GA
+    sprite: {fileID: 21300000, guid: 9b0f010e0e5a0d34886603212acfb943, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B8D"
+    latinName: nga
+    audioFile: nga
+    description: Konsonan NGA
+    sprite: {fileID: 21300000, guid: 5ec30db0cfdea6244af63f32437c3e5c, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.82
+  - aksaraChar: "\u1B8E"
+    latinName: ca
+    audioFile: ca
+    description: Konsonan CA
+    sprite: {fileID: 21300000, guid: 2c6728f73345fc840b29105b73ebe984, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B8F"
+    latinName: ja
+    audioFile: ja
+    description: Konsonan JA
+    sprite: {fileID: 21300000, guid: 3b523e7fa37117a4da4bb106e102a1ef, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B91"
+    latinName: nya
+    audioFile: nya
+    description: Konsonan NYA
+    sprite: {fileID: 21300000, guid: d554d223b144f6e43a0085a3b3761178, type: 3}
+    strokeOrder:
+    - x: 0.5
+      y: 0.85
+    - x: 0.72
+      y: 0.55
+  - aksaraChar: "\u1B92"
+    latinName: ta
+    audioFile: ta
+    description: Konsonan TA
+    sprite: {fileID: 21300000, guid: 112e66b1a7b87a643badd181f04b55e0, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B93"
+    latinName: da
+    audioFile: da
+    description: Konsonan DA
+    sprite: {fileID: 21300000, guid: 4b676879edd5dd8458eebb2e41b2df8f, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B94"
+    latinName: na
+    audioFile: na
+    description: Konsonan NA
+    sprite: {fileID: 21300000, guid: 12ee61887155aea4097547aa7a27bbb7, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.85

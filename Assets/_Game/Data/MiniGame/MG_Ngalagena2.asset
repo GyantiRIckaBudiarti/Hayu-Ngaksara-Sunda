@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c0d963e3466fa4aacd3eb1d2e6b9c3, type: 3}
+  m_Name: MG_Ngalagena2
+  m_EditorClassIdentifier: Assembly-CSharp::HayuNgaksara.MiniGameData
+  chapterID: 3
+  npcName: Ucup
+  introText: "Teraskeun diajar 9 aksara Ngalagena satuluyna \u2014 pa, ba, ma, ya,
+    ra, la, wa, sa, ha!\n<size=68%><i><color=#C3BCAD>(Lanjutkan belajar 9 aksara
+    Ngalagena berikutnya \u2014 pa, ba, ma, ya, ra, la, wa, sa, ha!)</color></i></size>"
+  chapterTitle: 'Bab 3: Ngalagena (pa - ha)'
+  gameMode: 0
+  cards:
+  - aksaraChar: "\u1B95"
+    latinName: pa
+    audioFile: pa
+    description: Konsonan PA
+    sprite: {fileID: 21300000, guid: c728e5e6179544b42947659e05eb3300, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.85
+    - x: 0.55
+      y: 0.85
+  - aksaraChar: "\u1B98"
+    latinName: ba
+    audioFile: ba
+    description: Konsonan BA
+    sprite: {fileID: 21300000, guid: be88d8f3921d1214393389f48428b5a8, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.8
+    - x: 0.65
+      y: 0.6
+  - aksaraChar: "\u1B99"
+    latinName: ma
+    audioFile: ma
+    description: Konsonan MA
+    sprite: {fileID: 21300000, guid: 3e1a44d94913f29449384685b8f96323, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.8
+    - x: 0.72
+      y: 0.75
+  - aksaraChar: "\u1B9A"
+    latinName: ya
+    audioFile: ya
+    description: Konsonan YA
+    sprite: {fileID: 21300000, guid: 8029225e103418540a5bd7bfbb3c7044, type: 3}
+    strokeOrder:
+    - x: 0.45
+      y: 0.85
+    - x: 0.18
+      y: 0.65
+    - x: 0.8
+      y: 0.4
+  - aksaraChar: "\u1B9B"
+    latinName: ra
+    audioFile: ra
+    description: Konsonan RA
+    sprite: {fileID: 21300000, guid: 5a59ba0f2d0319b41aa7729db6c0a4b7, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.85
+    - x: 0.5
+      y: 0.55
+    - x: 0.72
+      y: 0.3
+  - aksaraChar: "\u1B9C"
+    latinName: la
+    audioFile: la
+    description: Konsonan LA
+    sprite: {fileID: 21300000, guid: 812331bb13d071f49a6c4e46dc99c599, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+  - aksaraChar: "\u1B9D"
+    latinName: wa
+    audioFile: wa
+    description: Konsonan WA
+    sprite: {fileID: 21300000, guid: ad8fbf3cdb676ae46b1b516801e9f883, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+  - aksaraChar: "\u1B9E"
+    latinName: sa
+    audioFile: sa
+    description: Konsonan SA
+    sprite: {fileID: 21300000, guid: e4baf76abefb4f64cb8b54b9210ceb59, type: 3}
+    strokeOrder:
+    - x: 0.35
+      y: 0.85
+    - x: 0.55
+      y: 0.65
+    - x: 0.68
+      y: 0.4
+  - aksaraChar: "\u1BA0"
+    latinName: ha
+    audioFile: ha
+    description: Konsonan HA
+    sprite: {fileID: 21300000, guid: b294bcb279dc038478f2ee8763f3d497, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+    - x: 0.7
+      y: 0.55

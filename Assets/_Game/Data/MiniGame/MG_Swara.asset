@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c0d963e3466fa4aacd3eb1d2e6b9c3, type: 3}
+  m_Name: MG_Swara
+  m_EditorClassIdentifier: Assembly-CSharp::HayuNgaksara.MiniGameData
+  chapterID: 1
+  npcName: Sinta
+  introText: 'Hayu urang diajar 7 Aksara Swara (aksara vokal) Sunda!
+
+    <size=68%><i><color=#C3BCAD>(Ayo
+    kita belajar 7 Aksara Swara (huruf vokal) Sunda!)</color></i></size>'
+  chapterTitle: 'Bab 1: Aksara Swara'
+  gameMode: 0
+  cards:
+  - aksaraChar: "\u1B83"
+    latinName: a
+    audioFile: a
+    description: Vokal A, seperti kata 'ayam'
+    sprite: {fileID: 21300000, guid: 0c7aac8e12acbf84692227c45e7bfa69, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.78
+  - aksaraChar: "\u1B84"
+    latinName: i
+    audioFile: i
+    description: Vokal I, seperti kata 'ikan'
+    sprite: {fileID: 21300000, guid: 78ccee46d69708441b10320f5e24ae41, type: 3}
+    strokeOrder:
+    - x: 0.72
+      y: 0.85
+    - x: 0.15
+      y: 0.72
+  - aksaraChar: "\u1B85"
+    latinName: u
+    audioFile: u
+    description: Vokal U, seperti kata 'uang'
+    sprite: {fileID: 21300000, guid: a5e3da77508e3bb4db888480cda97659, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.72
+  - aksaraChar: "\u1B86"
+    latinName: "\xE9"
+    audioFile: e_panelenng
+    description: "Aksara Swara \xC9 (ae)"
+    sprite: {fileID: 21300000, guid: 99ca79b2396338c49b3fc6b926a3fae1, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8
+    - x: 0.65
+      y: 0.75
+  - aksaraChar: "\u1B87"
+    latinName: o
+    audioFile: o
+    description: Aksara Swara O
+    sprite: {fileID: 21300000, guid: d4a0e383ac089bb4681940ad07302d16, type: 3}
+    strokeOrder:
+    - x: 0.72
+      y: 0.85
+  - aksaraChar: "\u1B88"
+    latinName: e
+    audioFile: e
+    description: Aksara Swara E
+    sprite: {fileID: 21300000, guid: 99ca79b2396338c49b3fc6b926a3fae1, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.72
+  - aksaraChar: "\u1B89"
+    latinName: eu
+    audioFile: eu
+    description: Aksara Swara EU
+    sprite: {fileID: 21300000, guid: 128884d54e47e224292ac7d9000ccc91, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.72

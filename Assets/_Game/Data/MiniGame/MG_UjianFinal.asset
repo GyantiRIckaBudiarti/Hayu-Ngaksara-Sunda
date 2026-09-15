@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c0d963e3466fa4aacd3eb1d2e6b9c3, type: 3}
+  m_Name: MG_UjianFinal
+  m_EditorClassIdentifier: Assembly-CSharp::HayuNgaksara.MiniGameData
+  chapterID: 5
+  npcName: Jajang
+  introText: "Ujian Akhir! Gabungkeun konsonan Ngalagena jeung tanda vokal Rarangk\xE9n.
+    Tunjukkeun kamampuh anjeun!\n<size=68%><i><color=#C3BCAD>(Ujian Akhir! Gabungkan
+    konsonan Ngalagena dengan tanda vokal Rarangken. Tunjukkan kemampuanmu!)</color></i></size>"
+  chapterTitle: Ujian Final!
+  gameMode: 1
+  cards:
+  - aksaraChar: "\u1B83"
+    latinName: a
+    audioFile: a
+    description: Swara A
+    sprite: {fileID: 21300000, guid: 0c7aac8e12acbf84692227c45e7bfa69, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B84"
+    latinName: i
+    audioFile: i
+    description: Swara I
+    sprite: {fileID: 21300000, guid: 78ccee46d69708441b10320f5e24ae41, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B87"
+    latinName: eu
+    audioFile: eu
+    description: Swara EU
+    sprite: {fileID: 21300000, guid: 128884d54e47e224292ac7d9000ccc91, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B88"
+    latinName: o
+    audioFile: o
+    description: Swara O
+    sprite: {fileID: 21300000, guid: d4a0e383ac089bb4681940ad07302d16, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B8A"
+    latinName: ka
+    audioFile: ka
+    description: Ngalagena KA
+    sprite: {fileID: 21300000, guid: 65143b96b1997c14fb5d15bf8a25ac5a, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B8D"
+    latinName: nga
+    audioFile: nga
+    description: Ngalagena NGA
+    sprite: {fileID: 21300000, guid: 5ec30db0cfdea6244af63f32437c3e5c, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B92"
+    latinName: ta
+    audioFile: ta
+    description: Ngalagena TA
+    sprite: {fileID: 21300000, guid: 112e66b1a7b87a643badd181f04b55e0, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B95"
+    latinName: pa
+    audioFile: pa
+    description: Ngalagena PA
+    sprite: {fileID: 21300000, guid: c728e5e6179544b42947659e05eb3300, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B99"
+    latinName: ma
+    audioFile: ma
+    description: Ngalagena MA
+    sprite: {fileID: 21300000, guid: 3e1a44d94913f29449384685b8f96323, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B9B"
+    latinName: ra
+    audioFile: ra
+    description: Ngalagena RA
+    sprite: {fileID: 21300000, guid: 5a59ba0f2d0319b41aa7729db6c0a4b7, type: 3}
+    strokeOrder: []
+  - aksaraChar: "\u1B8A\u1BA4"
+    latinName: panghulu
+    audioFile: i
+    description: Rarangken I
+    sprite: {fileID: 0}
+    strokeOrder: []
+  - aksaraChar: "\u1B8A\u1BA5"
+    latinName: panguku
+    audioFile: u
+    description: Rarangken U
+    sprite: {fileID: 0}
+    strokeOrder: []

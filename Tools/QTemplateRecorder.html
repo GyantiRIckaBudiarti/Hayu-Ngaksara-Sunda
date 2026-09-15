@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Q$ Template Recorder — Aksara Sunda</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f0f0; }
+
+h1 {
+  background: #1a237e; color: #fff;
+  padding: 10px 20px; font-size: 15px;
+  display: flex; align-items: center; gap: 10px;
+}
+h1 .badge { font-size: 11px; font-weight: normal; background: #283593; padding: 3px 10px; border-radius: 4px; }
+h1 .head-btns { margin-left: auto; display: flex; gap: 6px; }
+h1 .head-btns button {
+  font-size: 12px; padding: 5px 12px; border: none; border-radius: 4px;
+  cursor: pointer; font-weight: 600;
+}
+.btn-preview { background: #fff; color: #1a237e; }
+.btn-import  { background: #43a047; color: #fff; }
+
+/* ── Group filter tabs ── */
+#grp-filter {
+  display: flex; gap: 4px; padding: 6px 8px;
+  background: #e8eaf6; border-bottom: 1px solid #ccc; flex-wrap: wrap;
+}
+#grp-filter button {
+  font-size: 10px; padding: 3px 9px; border-radius: 10px;
+  border: 1px solid #9fa8da; background: #fff; color: #3949ab;
+  cursor: pointer; font-weight: 600;
+}
+#grp-filter button.active { background: #1a237e; color: #fff; border-color: #1a237e; }
+
+.layout { display: flex; gap: 12px; padding: 12px; height: calc(100vh - 46px); }
+
+/* ── List kiri ── */
+#list-panel {
+  width: 185px; flex-shrink: 0;
+  background: #fff; border-radius: 6px; border: 1px solid #ccc;
+  overflow-y: auto;
+}
+.grp-title {
+  background: #1a237e; color: #fff; font-size: 11px; font-weight: bold;
+  padding: 5px 10px; position: sticky; top: 0; z-index: 1;
+}
+.row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 7px 10px; cursor: pointer; font-size: 13px;
+  border-bottom: 1px solid #f0f0f0; color: #333;
+}
+.row:hover { background: #e8eaf6; }
+.row.active { background: #1a237e; color: #fff; }
+.row.done   { color: #2e7d32; }
+.row .cnt   { font-size: 10px; background: #ddd; color: #333; border-radius: 10px; padding: 1px 6px; }
+.row.done .cnt   { background: #2e7d32; color: #fff; }
+.row.active .cnt { background: rgba(255,255,255,0.3); color: #fff; }
+
+/* ── Tengah ── */
+#draw-panel { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#lbl-aksara { font-size: 24px; font-weight: bold; color: #1a237e; letter-spacing: 1px; }
+#lbl-counter { font-size: 12px; color: #666; }
+
+canvas#c {
+  border: 3px solid #1a237e; border-radius: 4px; background: #fff;
+  display: block; cursor: crosshair; touch-action: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.btn-row { display: flex; gap: 8px; }
+button { padding: 8px 18px; border: none; border-radius: 5px; font-size: 13px; font-weight: 600; cursor: pointer; }
+button:disabled { opacity: 0.4; cursor: default; }
+#btnClear  { background: #e0e0e0; color: #333; }
+#btnSave   { background: #1a237e; color: #fff; }
+#btnSkip   { background: #e0e0e0; color: #555; font-size: 11px; padding: 8px 12px; }
+#btnExport { background: #2e7d32; color: #fff; }
+#msg         { font-size: 12px; color: #555; text-align: center; min-height: 18px; }
+#stroke-info { font-size: 11px; color: #999; }
+
+/* ── Kanan ── */
+#info-panel { width: 205px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+.card { background: #fff; border-radius: 6px; border: 1px solid #ccc; padding: 10px; }
+.card h3 { font-size: 11px; color: #1a237e; text-transform: uppercase; margin-bottom: 8px; }
+#ref-wrap {
+  background: #f9f9f9; border: 1px dashed #bbb; border-radius: 4px;
+  min-height: 130px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+#refImg    { max-width: 100%; max-height: 130px; display: none; }
+#ref-hint  { font-size: 11px; color: #999; text-align: center; padding: 8px; }
+#refInput  { display: none; }
+#importInput { display: none; }
+.stat-line { font-size: 12px; margin: 2px 0; color: #555; }
+.stat-line b { color: #1a237e; }
+#prog-bar  { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin-top: 4px; }
+#prog-fill { height: 100%; background: #1a237e; border-radius: 4px; width: 0%; transition: width 0.3s; }
+#export-status { font-size: 11px; color: #888; }
+.wide-btn  { width: 100%; font-size: 12px; padding: 7px; margin-top: 5px; }
+.warn-box  { font-size: 10px; color: #e57373; margin-top: 8px; background: #ffebee; padding: 6px; border-radius: 4px; }
+.info-box  { font-size: 10px; color: #888; margin-top: 6px; }
+
+/* ══════════════════════════════════════════════
+   PREVIEW MODAL
+══════════════════════════════════════════════ */
+#preview-modal {
+  display: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.75); z-index: 500;
+  overflow-y: auto; padding: 20px;
+}
+#preview-modal.open { display: block; }
+#preview-box {
+  background: #fff; border-radius: 8px;
+  max-width: 1100px; margin: 0 auto; padding: 18px;
+}
+#preview-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  border-bottom: 2px solid #e8eaf6; padding-bottom: 12px;
+}
+#preview-header h2 { font-size: 16px; color: #1a237e; flex: 1; }
+#preview-filter { display: flex; gap: 6px; }
+#preview-filter button {
+  font-size: 11px; padding: 4px 10px; border-radius: 12px;
+  border: 1px solid #ccc; background: #f5f5f5; color: #555;
+}
+#preview-filter button.active { background: #1a237e; color: #fff; border-color: #1a237e; }
+#btnClosePreview { background: #e0e0e0; color: #333; font-size: 12px; padding: 6px 14px; }
+
+#preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 12px;
+}
+.preview-group-title {
+  grid-column: 1 / -1;
+  font-size: 11px; font-weight: bold; color: #1a237e;
+  text-transform: uppercase; letter-spacing: 1px;
+  padding: 6px 0 2px; border-bottom: 1px solid #e8eaf6;
+}
+.aksara-card {
+  border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px;
+  background: #fafafa;
+}
+.aksara-card.complete { border-color: #81c784; background: #f1f8f1; }
+.aksara-card.empty    { border-color: #ffcc80; background: #fffde7; opacity: 0.7; }
+.aksara-card .card-title {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px;
+}
+.aksara-card .card-title span { font-size: 13px; font-weight: bold; color: #333; }
+.aksara-card .card-title .cbadge {
+  font-size: 10px; padding: 2px 8px; border-radius: 10px;
+  background: #ddd; color: #555;
+}
+.aksara-card.complete .cbadge { background: #2e7d32; color: #fff; }
+.aksara-card.empty .cbadge    { background: #ef6c00; color: #fff; }
+
+.tmpl-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.tmpl-wrap {
+  position: relative; display: inline-block;
+}
+.tmpl-wrap canvas {
+  border: 1px solid #ccc; border-radius: 3px;
+  display: block; cursor: default;
+}
+.tmpl-wrap .del-btn {
+  position: absolute; top: -6px; right: -6px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #f44336; color: #fff; border: none;
+  font-size: 10px; line-height: 16px; text-align: center;
+  cursor: pointer; padding: 0; font-weight: bold;
+  display: none;
+}
+.tmpl-wrap:hover .del-btn { display: block; }
+.tmpl-placeholder {
+  width: 70px; height: 70px; border-radius: 3px;
+  border: 1px dashed #ccc; background: #f5f5f5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #bbb;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<h1>
+  Q$ Template Recorder — Hayu Ngaksara Sunda
+  <span class="badge">10 template/aksara · dari 3–5 orang berbeda</span>
+  <div class="head-btns">
+    <button class="btn-preview" onclick="openPreview()">👁 Preview Semua</button>
+    <button class="btn-import"  onclick="document.getElementById('importInput').click()">📂 Import JSON</button>
+  </div>
+</h1>
+
+<!-- Preview Modal -->
+<div id="preview-modal">
+  <div id="preview-box">
+    <div id="preview-header">
+      <h2>👁 Preview Semua Template</h2>
+      <div id="preview-filter">
+        <button class="active" onclick="setFilter('all',this)">Semua</button>
+        <button onclick="setFilter('done',this)">✔ Selesai</button>
+        <button onclick="setFilter('partial',this)">⚡ Sebagian</button>
+        <button onclick="setFilter('empty',this)">○ Kosong</button>
+      </div>
+      <button id="btnClosePreview" onclick="closePreview()">✕ Tutup</button>
+    </div>
+    <div id="preview-grid"></div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- List Aksara -->
+  <div id="list-panel">
+    <div id="grp-filter">
+      <button class="active" onclick="setGroup('all',this)">Semua</button>
+      <button onclick="setGroup('Swara',this)">Swara</button>
+      <button onclick="setGroup('Ngalagena',this)">Ngalagena</button>
+      <button onclick="setGroup('Rarangkén',this)">Rarangken</button>
+      <button onclick="setGroup('Angka',this)">Angka</button>
+    </div>
+  </div>
+
+  <!-- Area Gambar -->
+  <div id="draw-panel">
+    <div id="lbl-aksara">— Pilih aksara —</div>
+    <div id="lbl-counter">Klik aksara di kiri untuk mulai</div>
+    <canvas id="c" width="440" height="440"></canvas>
+    <div class="btn-row">
+      <button id="btnClear" disabled>🗑 Clear</button>
+      <button id="btnSave"  disabled>✔ Simpan Template</button>
+      <button id="btnSkip"  disabled>Lewati →</button>
+    </div>
+    <div class="btn-row">
+      <button id="btnExport" disabled>⬇ Export Semua JSON</button>
+    </div>
+    <div id="stroke-info">Strokes: 0</div>
+    <div id="msg"></div>
+  </div>
+
+  <!-- Info & Export -->
+  <div id="info-panel">
+
+    <div class="card">
+      <h3>Gambar Referensi</h3>
+      <div id="ref-wrap">
+        <img id="refImg" alt="ref">
+        <div id="ref-hint">Muat gambar stroke order PNG dari<br>Assets/Resources/StrokeOrder/</div>
+      </div>
+      <input type="file" id="refInput" accept="image/*">
+      <button class="wide-btn" style="background:#e8eaf6;color:#333"
+              onclick="document.getElementById('refInput').click()">📂 Muat Referensi</button>
+    </div>
+
+    <div class="card">
+      <h3>Status</h3>
+      <div class="stat-line">Aksara: <b id="s-label">—</b></div>
+      <div class="stat-line">Template: <b id="s-tmpl">0 / 5</b></div>
+      <div class="stat-line">Selesai: <b id="s-done">0</b> / <b id="s-total">0</b></div>
+      <div id="prog-bar"><div id="prog-fill"></div></div>
+    </div>
+
+    <div class="card">
+      <h3>Export &amp; Import</h3>
+      <div id="export-status">Belum ada template.</div>
+      <button id="btnExportAll" onclick="exportAll()" disabled
+              class="wide-btn" style="background:#2e7d32;color:#fff">⬇ Download Semua JSON</button>
+      <button id="btnExportGrp" onclick="exportGroup()" disabled
+              class="wide-btn" style="background:#00796b;color:#fff">⬇ Download Grup Ini</button>
+      <button id="btnExportOne" onclick="exportCurrent()" disabled
+              class="wide-btn" style="background:#e0e0e0;color:#333">Download aksara ini saja</button>
+      <hr style="margin:8px 0;border:none;border-top:1px solid #eee">
+      <input type="file" id="importInput" accept=".json" multiple>
+      <button onclick="document.getElementById('importInput').click()"
+              class="wide-btn" style="background:#1565c0;color:#fff">📂 Import JSON Files</button>
+      <button onclick="openPreview()"
+              class="wide-btn" style="background:#e8eaf6;color:#1a237e">👁 Preview Semua</button>
+      <button id="btnReset" onclick="resetAll()"
+              class="wide-btn" style="background:#ffebee;color:#c62828;border:1px solid #ef9a9a">🗑 Hapus Semua</button>
+      <div class="warn-box"><b>Penting:</b> Rekam dari 3–5 orang berbeda, <b>10 template/aksara</b> = 360 total. Variasikan ukuran & kecepatan.</div>
+      <div class="info-box">Data auto-simpan di browser.<br>Simpan JSON ke:<br>Assets/_Game/Resources/QTemplates/</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── Daftar aksara ──────────────────────────────────────────────────────────────
+const AKSARA = [
+  {g:'Swara',     label:'a',           disp:'A'},
+  {g:'Swara',     label:'eu',          disp:'EU'},
+  {g:'Swara',     label:'e_pamepet',   disp:'E (pamepet)'},
+  {g:'Swara',     label:'e_panelenng', disp:'É (panéléng)'},
+  {g:'Swara',     label:'i',           disp:'I'},
+  {g:'Swara',     label:'u',           disp:'U'},
+  {g:'Swara',     label:'o',           disp:'O'},
+  {g:'Ngalagena', label:'ka',  disp:'KA'},  {g:'Ngalagena', label:'ga',  disp:'GA'},
+  {g:'Ngalagena', label:'nga', disp:'NGA'}, {g:'Ngalagena', label:'ca',  disp:'CA'},
+  {g:'Ngalagena', label:'ja',  disp:'JA'},  {g:'Ngalagena', label:'nya', disp:'NYA'},
+  {g:'Ngalagena', label:'ta',  disp:'TA'},  {g:'Ngalagena', label:'da',  disp:'DA'},
+  {g:'Ngalagena', label:'na',  disp:'NA'},  {g:'Ngalagena', label:'pa',  disp:'PA'},
+  {g:'Ngalagena', label:'ba',  disp:'BA'},  {g:'Ngalagena', label:'ma',  disp:'MA'},
+  {g:'Ngalagena', label:'ya',  disp:'YA'},  {g:'Ngalagena', label:'ra',  disp:'RA'},
+  {g:'Ngalagena', label:'la',  disp:'LA'},  {g:'Ngalagena', label:'wa',  disp:'WA'},
+  {g:'Ngalagena', label:'sa',  disp:'SA'},  {g:'Ngalagena', label:'ha',  disp:'HA'},
+  {g:'Ngalagena', label:'fa',  disp:'FA'},  {g:'Ngalagena', label:'qa',  disp:'QA'},
+  {g:'Ngalagena', label:'va',  disp:'VA'},  {g:'Ngalagena', label:'xa',  disp:'XA'},
+  {g:'Ngalagena', label:'za',  disp:'ZA'},
+  {g:'Rarangkén', label:'panghulu',   disp:'Panghulu (i)'},
+  {g:'Rarangkén', label:'panguku',    disp:'Panguku (u)'},
+  {g:'Rarangkén', label:'pamepet_r',  disp:'Pamepet (e)'},
+  {g:'Rarangkén', label:'paneuleung', disp:'Paneuleung (eu)'},
+  {g:'Rarangkén', label:'panglayar',  disp:'Panglayar (é)'},
+  {g:'Rarangkén', label:'pangecek',   disp:'Pangecek (o)'},
+  {g:'Rarangkén', label:'pamaeh',     disp:'Pamaeh (mati)'},
+  {g:'Angka', label:'angka-0', disp:'᮰ (0)'},
+  {g:'Angka', label:'angka-1', disp:'᮱ (1)'},
+  {g:'Angka', label:'angka-2', disp:'᮲ (2)'},
+  {g:'Angka', label:'angka-3', disp:'᮳ (3)'},
+  {g:'Angka', label:'angka-4', disp:'᮴ (4)'},
+  {g:'Angka', label:'angka-5', disp:'᮵ (5)'},
+  {g:'Angka', label:'angka-6', disp:'᮶ (6)'},
+  {g:'Angka', label:'angka-7', disp:'᮷ (7)'},
+  {g:'Angka', label:'angka-8', disp:'᮸ (8)'},
+  {g:'Angka', label:'angka-9', disp:'᮹ (9)'},
+];
+const TOTAL = AKSARA.length;
+const PER   = 10; // 10 template/aksara untuk coverage variasi tulisan lebih baik
+
+// ── Database ───────────────────────────────────────────────────────────────────
+// Format: label → {label, templates:[{strokes:[{pts:[x0,y0,...]}]}]}
+// pts = NORMALIZED [0..1]
+const LS_KEY = 'qdollar_sunda_v1';
+const db = {};
+AKSARA.forEach(a => db[a.label] = {label: a.label, templates: []});
+
+let activeGroup = 'all';
+function setGroup(g, btn) {
+  activeGroup = g;
+  document.querySelectorAll('#grp-filter button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  updateSidebar();
+}
+function visibleAksara() {
+  return activeGroup === 'all' ? AKSARA : AKSARA.filter(a => a.g === activeGroup);
+}
+
+try {
+  const saved = localStorage.getItem(LS_KEY);
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    Object.keys(parsed).forEach(lbl => { if (db[lbl]) db[lbl] = parsed[lbl]; });
+  }
+} catch(e) {}
+
+function saveToStorage() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(db)); } catch(e) {}
+}
+
+// ── Canvas utama ───────────────────────────────────────────────────────────────
+const cv  = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const CW  = cv.width, CH = cv.height;
+
+let curLabel   = null;
+let rawStrokes = [];      // [{x,y}[]] — pixel coords, untuk render
+let rawCurrent = [];      // stroke sedang berjalan — pixel coords
+let isDown     = false;
+
+const COLORS = ['#1565C0','#B71C1C','#1B5E20','#4A148C','#006064','#E65100','#3E2723','#880E4F'];
+
+function clearCanvas() {
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, CW, CH);
+}
+
+function renderStrokes() {
+  clearCanvas();
+  rawStrokes.forEach((s, i) => drawPixelStroke(ctx, s, COLORS[i % COLORS.length], 5));
+  if (rawCurrent.length >= 2)
+    drawPixelStroke(ctx, rawCurrent, COLORS[rawStrokes.length % COLORS.length], 5);
+  document.getElementById('stroke-info').textContent =
+    'Strokes: ' + rawStrokes.length + (isDown ? ' (menggambar...)' : '');
+}
+
+function drawPixelStroke(c, pts, color, lw) {
+  if (pts.length < 2) return;
+  c.beginPath(); c.strokeStyle = color; c.lineWidth = lw;
+  c.lineCap = 'round'; c.lineJoin = 'round';
+  c.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) c.lineTo(pts[i].x, pts[i].y);
+  c.stroke();
+}
+
+// Render template (normalized [0,1] pts) ke canvas berukuran W×H
+function drawNormalizedTemplate(c, template, W, H) {
+  c.fillStyle = '#fff';
+  c.fillRect(0, 0, W, H);
+  template.strokes.forEach((stroke, si) => {
+    const pts = stroke.pts;
+    if (pts.length < 4) return;
+    c.beginPath();
+    c.strokeStyle = COLORS[si % COLORS.length];
+    c.lineWidth   = Math.max(1.5, W / 55);
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    c.moveTo(pts[0] * W, pts[1] * H);
+    for (let i = 2; i < pts.length; i += 2) c.lineTo(pts[i] * W, pts[i+1] * H);
+    c.stroke();
+  });
+}
+
+// ── Mouse / Touch ──────────────────────────────────────────────────────────────
+function getXY(e) {
+  const rect = cv.getBoundingClientRect();
+  const src  = e.touches ? e.touches[0] : e;
+  return {
+    x: (src.clientX - rect.left) * (CW / rect.width),
+    y: (src.clientY - rect.top)  * (CH / rect.height)
+  };
+}
+
+cv.addEventListener('mousedown', e => {
+  if (!curLabel) return;
+  e.preventDefault(); isDown = true;
+  rawCurrent = [getXY(e)]; renderStrokes();
+});
+cv.addEventListener('mousemove', e => {
+  if (!isDown) return;
+  e.preventDefault();
+  rawCurrent.push(getXY(e)); renderStrokes();
+});
+cv.addEventListener('mouseup', e => {
+  if (!isDown) return;
+  isDown = false;
+  if (rawCurrent.length >= 2) rawStrokes.push([...rawCurrent]);
+  rawCurrent = []; renderStrokes(); updateButtons();
+});
+
+cv.addEventListener('touchstart', e => {
+  if (!curLabel) return;
+  e.preventDefault(); isDown = true;
+  rawCurrent = [getXY(e)]; renderStrokes();
+}, {passive:false});
+cv.addEventListener('touchmove', e => {
+  if (!isDown) return;
+  e.preventDefault();
+  rawCurrent.push(getXY(e)); renderStrokes();
+}, {passive:false});
+cv.addEventListener('touchend', e => {
+  if (!isDown) return;
+  e.preventDefault(); isDown = false;
+  if (rawCurrent.length >= 2) rawStrokes.push([...rawCurrent]);
+  rawCurrent = []; renderStrokes(); updateButtons();
+}, {passive:false});
+
+// ── Tombol utama ───────────────────────────────────────────────────────────────
+document.getElementById('btnClear').onclick = () => {
+  rawStrokes = []; rawCurrent = []; isDown = false;
+  clearCanvas();
+  document.getElementById('stroke-info').textContent = 'Strokes: 0';
+  setMsg(''); updateButtons();
+};
+
+document.getElementById('btnSave').onclick = () => {
+  if (!curLabel || rawStrokes.length === 0) return;
+
+  // Simpan dalam format normalized [0,1]
+  const entry = {
+    strokes: rawStrokes.map(s => ({
+      pts: s.flatMap(p => [
+        parseFloat((p.x / CW).toFixed(5)),
+        parseFloat((p.y / CH).toFixed(5))
+      ])
+    }))
+  };
+  db[curLabel].templates.push(entry);
+  saveToStorage();
+
+  const count = db[curLabel].templates.length;
+  rawStrokes = []; rawCurrent = []; clearCanvas();
+  document.getElementById('stroke-info').textContent = 'Strokes: 0';
+  setMsg(`✔ Template ${count}/${PER} tersimpan untuk ${AKSARA.find(a=>a.label===curLabel).disp}!`);
+
+  updateSidebar(); updateStats(); updateButtons(); updateCounter();
+
+  if (count >= PER) {
+    setTimeout(() => {
+      const visible = visibleAksara();
+      const idx  = visible.findIndex(a => a.label === curLabel);
+      const next = visible.find((a,i) => i > idx && db[a.label].templates.length < PER);
+      if (next) selectAksara(next.label);
+      else      setMsg('🎉 Grup ini selesai! Klik Preview atau Export.');
+    }, 700);
+  }
+};
+
+document.getElementById('btnSkip').onclick = () => {
+  if (!curLabel) return;
+  rawStrokes = []; rawCurrent = []; isDown = false; clearCanvas();
+  const visible = visibleAksara();
+  const idx = visible.findIndex(a => a.label === curLabel);
+  selectAksara(visible[(idx + 1) % visible.length].label);
+};
+
+document.getElementById('btnExport').onclick = exportAll;
+
+// ── Pilih aksara ───────────────────────────────────────────────────────────────
+function selectAksara(label) {
+  curLabel = label; rawStrokes = []; rawCurrent = []; isDown = false;
+  clearCanvas();
+  document.getElementById('stroke-info').textContent = 'Strokes: 0';
+  setMsg('Gambar aksara di kanvas, lalu klik Simpan Template.');
+  document.getElementById('lbl-aksara').textContent = AKSARA.find(a=>a.label===label).disp;
+  updateCounter(); updateButtons(); updateSidebar(); updateStats();
+}
+
+function updateCounter() {
+  if (!curLabel) return;
+  const n = db[curLabel].templates.length;
+  document.getElementById('lbl-counter').textContent =
+    n >= PER ? `SELESAI ✔ (${PER}/${PER} template)` : `Rekam template ${n+1} dari ${PER}`;
+}
+
+// ── Sidebar ────────────────────────────────────────────────────────────────────
+function updateSidebar() {
+  const panel = document.getElementById('list-panel');
+  // Rebuild: keep grp-filter, clear the rest
+  const filterEl = document.getElementById('grp-filter');
+  panel.innerHTML = '';
+  panel.appendChild(filterEl);
+  let lastG = '';
+  visibleAksara().forEach(a => {
+    if (a.g !== lastG) {
+      const d = document.createElement('div');
+      d.className = 'grp-title'; d.textContent = a.g;
+      panel.appendChild(d); lastG = a.g;
+    }
+    const n   = db[a.label].templates.length;
+    const div = document.createElement('div');
+    div.className = 'row' +
+      (a.label === curLabel ? ' active' : '') +
+      (n >= PER ? ' done' : '');
+    div.innerHTML = `<span>${a.disp}</span><span class="cnt">${n}/${PER}</span>`;
+    div.onclick   = () => selectAksara(a.label);
+    panel.appendChild(div);
+  });
+}
+
+// ── Stats ──────────────────────────────────────────────────────────────────────
+function updateStats() {
+  const done    = Object.values(db).filter(d => d.templates.length >= PER).length;
+  const hasAny  = Object.values(db).some(d => d.templates.length > 0);
+  const partial = Object.values(db).filter(d => d.templates.length > 0 && d.templates.length < PER).length;
+  document.getElementById('s-label').textContent = curLabel
+    ? AKSARA.find(a=>a.label===curLabel).disp : '—';
+  document.getElementById('s-tmpl').textContent  = curLabel
+    ? `${db[curLabel].templates.length} / ${PER}` : `0 / ${PER}`;
+  document.getElementById('s-done').textContent  = done;
+  document.getElementById('s-total').textContent = TOTAL;
+  document.getElementById('prog-fill').style.width = (done / TOTAL * 100).toFixed(1) + '%';
+  document.getElementById('export-status').textContent = hasAny
+    ? `${done} selesai, ${partial} sebagian, total ${Object.values(db).reduce((s,d)=>s+d.templates.length,0)} template`
+    : 'Belum ada template.';
+  const grpHasAny = visibleAksara().some(a => db[a.label].templates.length > 0);
+  document.getElementById('btnExportAll').disabled = !hasAny;
+  document.getElementById('btnExportGrp').disabled = !grpHasAny;
+  document.getElementById('btnExportOne').disabled = !curLabel || db[curLabel].templates.length === 0;
+}
+
+function updateButtons() {
+  document.getElementById('btnClear').disabled  = !curLabel;
+  document.getElementById('btnSave').disabled   = !curLabel || rawStrokes.length === 0;
+  document.getElementById('btnSkip').disabled   = !curLabel;
+  document.getElementById('btnExport').disabled = !Object.values(db).some(d=>d.templates.length>0);
+}
+
+function setMsg(t) { document.getElementById('msg').textContent = t; }
+
+// ── Referensi gambar ───────────────────────────────────────────────────────────
+document.getElementById('refInput').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  const url = URL.createObjectURL(f);
+  const img = document.getElementById('refImg');
+  img.onload = () => URL.revokeObjectURL(url);
+  img.src = url; img.style.display = 'block';
+  document.getElementById('ref-hint').style.display = 'none';
+  e.target.value = '';
+});
+
+// ── Export ─────────────────────────────────────────────────────────────────────
+function download(label, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = label + '.json';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+function exportCurrent() {
+  if (!curLabel || db[curLabel].templates.length === 0) return;
+  download(curLabel, db[curLabel]);
+}
+function exportAll() {
+  const entries = Object.values(db).filter(d => d.templates.length > 0);
+  if (!entries.length) { alert('Belum ada template.'); return; }
+  entries.forEach((d, i) => setTimeout(() => download(d.label, d), i * 180));
+}
+function exportGroup() {
+  const entries = visibleAksara()
+    .map(a => db[a.label])
+    .filter(d => d.templates.length > 0);
+  if (!entries.length) { alert('Belum ada template di grup ini.'); return; }
+  entries.forEach((d, i) => setTimeout(() => download(d.label, d), i * 180));
+}
+
+// ── Import JSON ────────────────────────────────────────────────────────────────
+document.getElementById('importInput').addEventListener('change', e => {
+  const files = Array.from(e.target.files);
+  if (!files.length) return;
+  let imported = 0, skipped = 0, unknown = 0;
+
+  const promises = files.map(file => new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        // Validasi format: harus ada label & templates array
+        if (!data.label || !Array.isArray(data.templates)) { unknown++; resolve(); return; }
+        if (!db[data.label]) { unknown++; resolve(); return; }
+
+        data.templates.forEach(tmpl => {
+          // Validasi setiap template: harus ada strokes
+          if (!tmpl.strokes || !Array.isArray(tmpl.strokes)) return;
+          if (db[data.label].templates.length < PER) {
+            db[data.label].templates.push(tmpl);
+            imported++;
+          } else {
+            skipped++;
+          }
+        });
+      } catch(err) { unknown++; }
+      resolve();
+    };
+    reader.readAsText(file);
+  }));
+
+  Promise.all(promises).then(() => {
+    saveToStorage();
+    updateSidebar(); updateStats(); updateButtons();
+    if (curLabel) updateCounter();
+    const parts = [];
+    if (imported) parts.push(`${imported} template diimpor`);
+    if (skipped)  parts.push(`${skipped} dilewati (aksara sudah penuh ${PER}/${PER})`);
+    if (unknown)  parts.push(`${unknown} file tidak dikenali`);
+    setMsg('✔ Import: ' + (parts.join(', ') || 'tidak ada perubahan'));
+  });
+  e.target.value = '';
+});
+
+// ── Preview modal ──────────────────────────────────────────────────────────────
+let previewFilter = 'all';
+
+function openPreview() {
+  renderPreviewGrid();
+  document.getElementById('preview-modal').classList.add('open');
+}
+function closePreview() {
+  document.getElementById('preview-modal').classList.remove('open');
+}
+function setFilter(f, btn) {
+  previewFilter = f;
+  document.querySelectorAll('#preview-filter button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPreviewGrid();
+}
+
+function renderPreviewGrid() {
+  const grid = document.getElementById('preview-grid');
+  grid.innerHTML = '';
+  let lastG = '';
+
+  AKSARA.forEach(a => {
+    const n = db[a.label].templates.length;
+    // Filter
+    if (previewFilter === 'done'    && n < PER)  return;
+    if (previewFilter === 'partial' && (n === 0 || n >= PER)) return;
+    if (previewFilter === 'empty'   && n > 0)    return;
+
+    // Group header
+    if (a.g !== lastG) {
+      const gh = document.createElement('div');
+      gh.className = 'preview-group-title';
+      gh.textContent = a.g;
+      grid.appendChild(gh);
+      lastG = a.g;
+    }
+
+    // Aksara card
+    const card = document.createElement('div');
+    card.className = 'aksara-card' + (n >= PER ? ' complete' : n === 0 ? ' empty' : '');
+
+    // Card title
+    const title = document.createElement('div');
+    title.className = 'card-title';
+    title.innerHTML = `<span>${a.disp}</span>
+      <span class="cbadge">${n}/${PER}${n>=PER?' ✔':''}</span>`;
+    card.appendChild(title);
+
+    // Template thumbnails row
+    const row = document.createElement('div');
+    row.className = 'tmpl-row';
+
+    // Render each saved template
+    db[a.label].templates.forEach((tmpl, ti) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'tmpl-wrap';
+
+      const mc  = document.createElement('canvas');
+      mc.width  = 70; mc.height = 70;
+      const mctx = mc.getContext('2d');
+      drawNormalizedTemplate(mctx, tmpl, 70, 70);
+      wrap.appendChild(mc);
+
+      // Delete button
+      const del = document.createElement('button');
+      del.className = 'del-btn';
+      del.textContent = '×';
+      del.title = `Hapus template ${ti+1}`;
+      del.onclick = () => {
+        if (!confirm(`Hapus template ${ti+1} untuk "${a.disp}"?`)) return;
+        db[a.label].templates.splice(ti, 1);
+        saveToStorage();
+        renderPreviewGrid();   // re-render modal
+        updateSidebar(); updateStats(); updateButtons();
+        if (curLabel === a.label) updateCounter();
+      };
+      wrap.appendChild(del);
+
+      // Tooltip: template index
+      const lbl = document.createElement('div');
+      lbl.style.cssText = 'text-align:center;font-size:9px;color:#999;margin-top:1px';
+      lbl.textContent = `#${ti+1}`;
+      const outer = document.createElement('div');
+      outer.style.display = 'flex'; outer.style.flexDirection = 'column';
+      outer.appendChild(wrap); outer.appendChild(lbl);
+      row.appendChild(outer);
+    });
+
+    // Empty placeholder slots
+    for (let i = n; i < PER; i++) {
+      const ph = document.createElement('div');
+      ph.className = 'tmpl-placeholder';
+      ph.textContent = `#${i+1}`;
+      const outer = document.createElement('div');
+      outer.style.display = 'flex'; outer.style.flexDirection = 'column';
+      const lbl = document.createElement('div');
+      lbl.style.cssText = 'text-align:center;font-size:9px;color:#ccc;margin-top:1px';
+      lbl.textContent = `#${i+1}`;
+      outer.appendChild(ph); outer.appendChild(lbl);
+      row.appendChild(outer);
+    }
+
+    card.appendChild(row);
+
+    // Klik card → pilih aksara di recorder
+    title.querySelector('span').style.cursor = 'pointer';
+    title.querySelector('span').onclick = () => {
+      closePreview();
+      selectAksara(a.label);
+    };
+
+    grid.appendChild(card);
+  });
+
+  if (!grid.children.length) {
+    grid.innerHTML = '<div style="padding:20px;color:#999;text-align:center">Tidak ada aksara untuk ditampilkan.</div>';
+  }
+}
+
+// Tutup modal kalau klik di luar box
+document.getElementById('preview-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('preview-modal')) closePreview();
+});
+
+// ── Reset ──────────────────────────────────────────────────────────────────────
+function resetAll() {
+  if (!confirm('Hapus SEMUA data template?\nTindakan ini tidak bisa dibatalkan.')) return;
+  AKSARA.forEach(a => db[a.label] = {label: a.label, templates: []});
+  try { localStorage.removeItem(LS_KEY); } catch(e) {}
+  curLabel = null; rawStrokes = []; rawCurrent = []; isDown = false;
+  clearCanvas();
+  document.getElementById('lbl-aksara').textContent  = '— Pilih aksara —';
+  document.getElementById('lbl-counter').textContent = 'Klik aksara di kiri untuk mulai';
+  document.getElementById('stroke-info').textContent  = 'Strokes: 0';
+  setMsg('Semua data dihapus.');
+  updateSidebar(); updateStats(); updateButtons();
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+clearCanvas();
+updateSidebar();
+updateStats();
+updateButtons();
+</script>
+</body>
+</html>

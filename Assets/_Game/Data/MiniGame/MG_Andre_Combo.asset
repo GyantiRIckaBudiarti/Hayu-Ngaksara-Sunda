@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c0d963e3466fa4aacd3eb1d2e6b9c3, type: 3}
+  m_Name: MG_Andre_Combo
+  m_EditorClassIdentifier: Assembly-CSharp::HayuNgaksara.MiniGameData
+  chapterID: 4
+  npcName: Andre
+  introText: "Hayu urang gabungkeun konsonan jeung rarangk\xE9n jadi suku kata. Asyik,
+    san\xE9s?\n<size=68%><i><color=#C3BCAD>(Ayo kita gabungkan konsonan dengan rarangken
+    jadi suku kata. Asyik kan?)</color></i></size>"
+  chapterTitle: 'Latihan Ekstra: Gabung Aksara'
+  gameMode: 1
+  cards:
+  - aksaraChar: "\u1B8A"
+    latinName: ka
+    audioFile: ka
+    description: Konsonan KA
+    sprite: {fileID: 21300000, guid: 65143b96b1997c14fb5d15bf8a25ac5a, type: 3}
+    strokeOrder:
+    - x: 0.78
+      y: 0.85
+  - aksaraChar: "\u1B8C"
+    latinName: ga
+    audioFile: ga
+    description: Konsonan GA
+    sprite: {fileID: 21300000, guid: 9b0f010e0e5a0d34886603212acfb943, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B8D"
+    latinName: nga
+    audioFile: nga
+    description: Konsonan NGA
+    sprite: {fileID: 21300000, guid: 5ec30db0cfdea6244af63f32437c3e5c, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.82
+  - aksaraChar: "\u1B8E"
+    latinName: ca
+    audioFile: ca
+    description: Konsonan CA
+    sprite: {fileID: 21300000, guid: 2c6728f73345fc840b29105b73ebe984, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B8F"
+    latinName: ja
+    audioFile: ja
+    description: Konsonan JA
+    sprite: {fileID: 21300000, guid: 3b523e7fa37117a4da4bb106e102a1ef, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B91"
+    latinName: nya
+    audioFile: nya
+    description: Konsonan NYA
+    sprite: {fileID: 21300000, guid: d554d223b144f6e43a0085a3b3761178, type: 3}
+    strokeOrder:
+    - x: 0.5
+      y: 0.85
+    - x: 0.72
+      y: 0.55
+  - aksaraChar: "\u1B92"
+    latinName: ta
+    audioFile: ta
+    description: Konsonan TA
+    sprite: {fileID: 21300000, guid: 112e66b1a7b87a643badd181f04b55e0, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B93"
+    latinName: da
+    audioFile: da
+    description: Konsonan DA
+    sprite: {fileID: 21300000, guid: 4b676879edd5dd8458eebb2e41b2df8f, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.82
+  - aksaraChar: "\u1B94"
+    latinName: na
+    audioFile: na
+    description: Konsonan NA
+    sprite: {fileID: 21300000, guid: 12ee61887155aea4097547aa7a27bbb7, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.85
+  - aksaraChar: "\u1B95"
+    latinName: pa
+    audioFile: pa
+    description: Konsonan PA
+    sprite: {fileID: 21300000, guid: c728e5e6179544b42947659e05eb3300, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.85
+    - x: 0.55
+      y: 0.85
+  - aksaraChar: "\u1B98"
+    latinName: ba
+    audioFile: ba
+    description: Konsonan BA
+    sprite: {fileID: 21300000, guid: be88d8f3921d1214393389f48428b5a8, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.8
+    - x: 0.65
+      y: 0.6
+  - aksaraChar: "\u1B99"
+    latinName: ma
+    audioFile: ma
+    description: Konsonan MA
+    sprite: {fileID: 21300000, guid: 3e1a44d94913f29449384685b8f96323, type: 3}
+    strokeOrder:
+    - x: 0.1
+      y: 0.8
+    - x: 0.72
+      y: 0.75
+  - aksaraChar: "\u1B9A"
+    latinName: ya
+    audioFile: ya
+    description: Konsonan YA
+    sprite: {fileID: 21300000, guid: 8029225e103418540a5bd7bfbb3c7044, type: 3}
+    strokeOrder:
+    - x: 0.45
+      y: 0.85
+    - x: 0.18
+      y: 0.65
+    - x: 0.8
+      y: 0.4
+  - aksaraChar: "\u1B9B"
+    latinName: ra
+    audioFile: ra
+    description: Konsonan RA
+    sprite: {fileID: 21300000, guid: 5a59ba0f2d0319b41aa7729db6c0a4b7, type: 3}
+    strokeOrder:
+    - x: 0.12
+      y: 0.85
+    - x: 0.5
+      y: 0.55
+    - x: 0.72
+      y: 0.3
+  - aksaraChar: "\u1B9C"
+    latinName: la
+    audioFile: la
+    description: Konsonan LA
+    sprite: {fileID: 21300000, guid: 812331bb13d071f49a6c4e46dc99c599, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+  - aksaraChar: "\u1B9D"
+    latinName: wa
+    audioFile: wa
+    description: Konsonan WA
+    sprite: {fileID: 21300000, guid: ad8fbf3cdb676ae46b1b516801e9f883, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+  - aksaraChar: "\u1B9E"
+    latinName: sa
+    audioFile: sa
+    description: Konsonan SA
+    sprite: {fileID: 21300000, guid: e4baf76abefb4f64cb8b54b9210ceb59, type: 3}
+    strokeOrder:
+    - x: 0.35
+      y: 0.85
+    - x: 0.55
+      y: 0.65
+    - x: 0.68
+      y: 0.4
+  - aksaraChar: "\u1BA0"
+    latinName: ha
+    audioFile: ha
+    description: Konsonan HA
+    sprite: {fileID: 21300000, guid: b294bcb279dc038478f2ee8763f3d497, type: 3}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+    - x: 0.7
+      y: 0.55
+  - aksaraChar: "\u1B8A\u1BA4"
+    latinName: panghulu
+    audioFile: i
+    description: "Tanda vokal I  \u2014 ka+panghulu = ki"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.2
+      y: 0.85
+  - aksaraChar: "\u1B8A\u1BA5"
+    latinName: panguku
+    audioFile: u
+    description: "Tanda vokal U  \u2014 ka+panguku = ku"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.7
+      y: 0.85
+  - aksaraChar: "\u1B8A\u1BA6"
+    latinName: panglayar
+    audioFile: e
+    description: "Tanda vokal \xC9 \u2014 ka+panglayar = k\xE9"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8
+    - x: 0.75
+      y: 0.85
+  - aksaraChar: "\u1B8A\u1BA7"
+    latinName: pangecek
+    audioFile: o
+    description: "Tanda vokal O  \u2014 ka+pangecek = ko"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+    - x: 0.5
+      y: 0.6
+  - aksaraChar: "\u1B8A\u1BA8"
+    latinName: pamepet_r
+    audioFile: e
+    description: "Tanda vokal E \u2014 ka+pamepet = ke"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8
+    - x: 0.72
+      y: 0.8
+  - aksaraChar: "\u1B8A\u1BA9"
+    latinName: paneuleung
+    audioFile: eu
+    description: "Tanda vokal EU \u2014 ka+paneuleung = keu"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8

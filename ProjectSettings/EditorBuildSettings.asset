@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Game/Scenes/01_MainMenu.unity
+    guid: 9549714f7dba5eb47afaa193bb0a53f7
+  - enabled: 1
+    path: Assets/_Game/Scenes/00a_NamaKarakter.unity
+    guid: 0019e9ac0c205e34fb5ce432ebb3e48a
+  - enabled: 1
+    path: Assets/_Game/Scenes/00_Sekolah.unity
+    guid: 42b4b4b37ca209f41bca5e9fd19ed9c6
+  - enabled: 1
+    path: Assets/_Game/Scenes/MG_Swara.unity
+    guid: 2dee7294a3d92154b8ba9ff0f2dd5fdc
+  - enabled: 1
+    path: Assets/_Game/Scenes/MG_Ngalagena1.unity
+    guid: e72c15b856e13a24ba72da1b2bc48d60
+  - enabled: 1
+    path: Assets/_Game/Scenes/MG_Ngalagena2.unity
+    guid: 8aea2d319a6718e4f9136b517faefca6
+  - enabled: 1
+    path: Assets/_Game/Scenes/MG_Rarangken.unity
+    guid: 7b9d5074b5c8d0d42a6c671d9d8923a6
+  - enabled: 1
+    path: Assets/_Game/Scenes/MG_UjianFinal.unity
+    guid: 1db14916ec428af48b73567e1f4cc3aa
+  - enabled: 1
+    path: Assets/_Game/Scenes/LevelSummary.unity
+    guid: aa2ed296fa9708d438f1888daba7df5c
+  - enabled: 1
+    path: Assets/_Game/Scenes/02_BelajarHuruf.unity
+    guid: 6aec78b5a80bda245967317edc5b7e5f
+  - enabled: 1
+    path: Assets/_Game/Scenes/03_LatihanBaca.unity
+    guid: 5e3b3e252e37a564aa2af9a75363538b
+  - enabled: 1
+    path: Assets/_Game/Scenes/04_LatihanTulis.unity
+    guid: 5679ef0e4f01b3c478bfe8bc16396218
+  - enabled: 1
+    path: Assets/_Game/Scenes/05_Pelafalan.unity
+    guid: 2f24554da415f2346aee9fee1d79b3de
+  - enabled: 1
+    path: Assets/_Game/Scenes/06_Kuis.unity
+    guid: 18e8795f2a5bc67438979c2f791ba8c8
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0

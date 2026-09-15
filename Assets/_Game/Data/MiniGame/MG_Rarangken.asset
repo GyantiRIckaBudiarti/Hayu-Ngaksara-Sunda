@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c0d963e3466fa4aacd3eb1d2e6b9c3, type: 3}
+  m_Name: MG_Rarangken
+  m_EditorClassIdentifier: Assembly-CSharp::HayuNgaksara.MiniGameData
+  chapterID: 4
+  npcName: Andre
+  introText: "Rarangk\xE9n nya\xE9ta tanda vokal anu ngarobah sora konsonan Sunda.
+    Hayu urang pelajari babarengan!\n<size=68%><i><color=#C3BCAD>(Rarangken adalah
+    tanda vokal yang mengubah bunyi konsonan Sunda. Ayo pelajari bersama!)</color></i></size>"
+  chapterTitle: 'Bab 4: Rarangken (Tanda Vokal)'
+  gameMode: 0
+  cards:
+  - aksaraChar: "\u1B8A\u1BA4"
+    latinName: ki
+    audioFile: i
+    description: "Tanda vokal I \u2014 ka+panghulu = ki"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.2
+      y: 0.85
+  - aksaraChar: "\u1B8A\u1BA5"
+    latinName: ku
+    audioFile: u
+    description: "Tanda vokal U \u2014 ka+panyuku = ku"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.7
+      y: 0.85
+  - aksaraChar: "\u1B8A\u1BA6"
+    latinName: "k\xE9"
+    audioFile: e
+    description: "Tanda vokal \xC9 \u2014 ka+pan\xE9l\xE9ng = k\xE9"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8
+    - x: 0.75
+      y: 0.85
+  - aksaraChar: "\u1B8A\u1BA7"
+    latinName: ko
+    audioFile: o
+    description: "Tanda vokal O \u2014 ka+panolong = ko"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.85
+    - x: 0.5
+      y: 0.6
+  - aksaraChar: "\u1B8A\u1BA8"
+    latinName: ke
+    audioFile: e
+    description: "Tanda vokal E \u2014 ka+pamepet = ke"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8
+    - x: 0.72
+      y: 0.8
+  - aksaraChar: "\u1B8A\u1BA9"
+    latinName: keu
+    audioFile: eu
+    description: "Tanda vokal EU \u2014 ka+paneuleung = keu"
+    sprite: {fileID: 0}
+    strokeOrder:
+    - x: 0.15
+      y: 0.8
+  - aksaraChar: "\u1B8A\u1BAA"
+    latinName: k
+    audioFile: ka
+    description: "Tanda mematikan \u2014 ka+pamaeh = k"
+    sprite: {fileID: 21300000, guid: 34bcf2232ccbdac4cac4a182f0884af1, type: 3}
+    strokeOrder: []
